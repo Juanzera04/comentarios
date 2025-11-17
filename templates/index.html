@@ -1,26 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas em tempo real</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Notas em Tempo Real</title>
 
     <link rel="stylesheet" href="/static/style.css">
-
-    <!-- SocketIO -->
+    <!-- Socket.IO CDN (compatível com Flask-SocketIO) -->
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
     <script src="/static/script.js" defer></script>
 </head>
 <body>
+    <!-- Welcome modal (block until user enters nick + avatar) -->
+    <div id="welcomeOverlay" class="overlay">
+        <div class="welcomeBox">
+            <h2>Bem-vindo!</h2>
+            <p>Escolha seu nickname e um escudo</p>
 
-<div class="container">
-    <h1>Notas em Tempo Real</h1>
+            <input id="nickInput" type="text" placeholder="Seu nickname (ex: João)" maxlength="30">
 
-    <textarea class="caixa" id="vitoria" placeholder="Notas de Vitória"></textarea>
-    <textarea class="caixa" id="nicole"  placeholder="Notas de Nicole"></textarea>
-    <textarea class="caixa" id="marcelo" placeholder="Notas de Marcelo"></textarea>
-    <textarea class="caixa" id="juan"    placeholder="Notas de Juan"></textarea>
-</div>
+            <div id="escudosContainer" class="escudosContainer">
+                <!-- thumbs serão injetados aqui via JS -->
+                <p class="mini">Carregando escudos...</p>
+            </div>
 
+            <div class="welcomeActions">
+                <button id="enterBtn" class="btn" disabled>Entrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main app -->
+    <div class="app">
+        <header>
+            <h1>Notas em Tempo Real</h1>
+        </header>
+
+        <main class="mainArea">
+            <!-- notas (layout horizontal) -->
+            <section class="notasRow">
+                <div class="boxWrap">
+                    <div class="boxTitle">Notas de Vitória</div>
+                    <textarea class="caixa" id="vitoria" placeholder="Notas de Vitória"></textarea>
+                </div>
+
+                <div class="boxWrap">
+                    <div class="boxTitle">Notas de Nicole</div>
+                    <textarea class="caixa" id="nicole" placeholder="Notas de Nicole"></textarea>
+                </div>
+
+                <div class="boxWrap">
+                    <div class="boxTitle">Notas de Marcelo</div>
+                    <textarea class="caixa" id="marcelo" placeholder="Notas de Marcelo"></textarea>
+                </div>
+
+                <div class="boxWrap">
+                    <div class="boxTitle">Notas de Juan</div>
+                    <textarea class="caixa" id="juan" placeholder="Notas de Juan"></textarea>
+                </div>
+
+                <div class="boxWrap">
+                    <div class="boxTitle">Notas do Uiuzum</div>
+                    <textarea class="caixa" id="uiuzum" placeholder="Notas do Uiuzum"></textarea>
+                </div>
+            </section>
+
+            <!-- sidebar de usuários online -->
+            <aside class="sidebar">
+                <h3>Usuários Online</h3>
+                <ul id="usersList" class="usersList">
+                    <!-- Itens serão inseridos via JS -->
+                </ul>
+            </aside>
+        </main>
+    </div>
 </body>
 </html>
