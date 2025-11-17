@@ -1,43 +1,142 @@
-body {
-    background: #0c0c0c;
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
+/* ===== Global - tema black ===== */
+:root{
+    --bg: #0b0b0c;
+    --panel: #111214;
+    --muted: #bfbfbf;
+    --accent: #169E92;
 }
 
-.container {
-    width: 90%;
-    max-width: 700px;
-    padding: 25px;
-    background: #111;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(255,255,255,0.05);
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg, #070708 0%, #0c0c0c 100%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
 }
 
-.caixa {
-    width: 100%;
-    padding: 20px;
-    margin-top: 15px;
-    border-radius: 10px;
-    border: none;
-    font-size: 18px;
-    background: #1c1c1c;
-    color: white;
-    outline: none;
+/* Header */
+header{
+    padding:18px 28px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+}
+header h1{margin:0;font-size:20px;font-weight:600;color:#fff}
+
+/* Main layout */
+.mainArea{
+    display:flex;
+    gap:20px;
+    padding:22px;
+    align-items:flex-start;
+    justify-content:center;
 }
 
-/* Brilhos especiais */
-#vitoria { box-shadow: 0 0 15px #ffeb3b; }   /* Amarelo */
-#nicole  { box-shadow: 0 0 15px #ff66cc; }   /* Rosa */
-#marcelo { box-shadow: 0 0 15px #ffffff; }   /* Branco */
-#juan    { box-shadow: 0 0 15px #00ff7f; }   /* Verde */
+/* Notas row = horizontal scroll if small */
+.notasRow{
+    display:flex;
+    gap:16px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding-bottom:8px;
+    width:100%;
+    max-width:1100px;
+}
 
-h1 {
-    text-align: center;
-    margin-bottom: 25px;
+/* Box wrap (title above + textarea) */
+.boxWrap{
+    min-width:220px;
+    width:260px;
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.boxTitle{
+    font-size:14px;
+    color:#ddd;
+    text-align:center;
+    font-weight:600;
+    margin-bottom:4px;
+}
+
+/* textarea style (caixa) */
+.caixa{
+    min-height:220px;
+    resize:vertical;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.04);
+    background:#151515;
+    color:#fff;
+    font-size:15px;
+    outline:none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6) inset;
+}
+
+/* brilhos especiais */
+#vitoria { box-shadow: 0 0 20px rgba(255,235,59,0.14); }   /* Amarelo */
+#nicole  { box-shadow: 0 0 20px rgba(255,102,204,0.14); }  /* Rosa */
+#marcelo { box-shadow: 0 0 20px rgba(255,255,255,0.12); }  /* Branco */
+#juan    { box-shadow: 0 0 20px rgba(0,255,127,0.12); }    /* Verde */
+#uiuzum  { box-shadow: 0 0 20px rgba(200,200,200,0.12); }  /* Cinza */
+
+/* Sidebar */
+.sidebar{
+    width:220px;
+    max-height:75vh;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:10px;
+    padding:12px;
+    border:1px solid rgba(255,255,255,0.03);
+    position:sticky;
+    top:20px;
+    align-self:flex-start;
+}
+.sidebar h3{margin:0 0 8px 0;font-size:14px;color:#fff}
+.usersList{
+    list-style:none;
+    padding:0;margin:0;display:flex;flex-direction:column;gap:10px;overflow:auto;max-height:66vh;
+}
+.userItem{
+    display:flex;gap:10px;align-items:center;padding:6px;border-radius:8px;
+    background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);
+}
+.userAvatar{
+    width:38px;height:38px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,0.04);
+}
+.userNick{font-size:14px;color:#eee;}
+
+/* Welcome overlay */
+.overlay{
+    position:fixed;inset:0;background:rgba(2,2,2,0.7);display:flex;align-items:center;justify-content:center;z-index:1000;
+}
+.welcomeBox{
+    width:420px;background:var(--panel);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+    box-shadow:0 10px 40px rgba(0,0,0,0.7);
+    text-align:center;
+}
+.welcomeBox h2{margin:0 0 8px 0}
+.welcomeBox p{margin:0 0 14px;color:var(--muted)}
+.welcomeBox input[type="text"]{
+    width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:#0f0f10;color:#fff;margin-bottom:12px;
+}
+.escudosContainer{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-height:180px;overflow:auto;padding:6px}
+.escudoThumb{
+    width:64px;height:64px;border-radius:8px;border:2px solid transparent;cursor:pointer;object-fit:cover;
+    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.escudoThumb:hover{transform:translateY(-4px)}
+.escudoSelected{border-color:var(--accent);box-shadow:0 6px 22px rgba(22,158,146,0.18)}
+.welcomeActions{margin-top:12px}
+.btn{background:var(--accent);color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:600;cursor:pointer}
+.btn:disabled{opacity:0.45;cursor:not-allowed}
+
+/* small screens */
+@media (max-width:900px){
+    .mainArea{flex-direction:column;align-items:stretch;padding:16px}
+    .sidebar{width:100%;max-height:200px;order:2}
+    .notasRow{order:1}
+    .boxWrap{width:100%;min-width:unset}
 }
